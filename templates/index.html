@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>College Helpdesk Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Fonts -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      🤖 College Helpdesk AI
+    </div>
+
+    <div class="chat-body" id="chatBody">
+      <div class="message bot">
+        Hello 👋 How can I help you today?
+      </div>
+    </div>
+
+    <div class="chat-footer">
+      <input type="text" id="userInput" placeholder="Ask something..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+  <script>
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const msg = input.value.trim();
+      if (!msg) return;
+
+      const chatBody = document.getElementById("chatBody");
+
+      const userMsg = document.createElement("div");
+      userMsg.className = "message user";
+      userMsg.innerText = msg;
+      chatBody.appendChild(userMsg);
+
+      input.value = "";
+
+      setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.className = "message bot";
+        botMsg.innerText = "Backend se smart reply aayega 🤍";
+        chatBody.appendChild(botMsg);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 500);
+
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+  </script>
+
+</body>
+</html>
