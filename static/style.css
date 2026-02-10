@@ -139,7 +139,7 @@ body {
     background: linear-gradient(
         135deg,
         rgba(255,255,255,0.35),
-        rgba(255,255,255,0.08)
+        hwb(0 31% 19% / 0.08)
     );
 
     backdrop-filter: blur(12px);
@@ -157,8 +157,8 @@ body {
 .chat-input button:hover {
     background: linear-gradient(
         135deg,
-        rgba(99,102,241,0.6),
-        rgba(99,102,241,0.3)
+        rgba(0, 4, 255, 0.6),
+        rgb(99, 241, 99)
     );
 
     transform: translateY(-1px);
@@ -197,7 +197,7 @@ body {
 }
 
 .quick-buttons button:hover {
-    background: rgba(99,102,241,0.45);
+    background: rgba(99, 241, 123, 0.45);
 }
 .clear-btn {
     margin-left: auto;
