@@ -79,7 +79,7 @@ function clearChat() {
     const chatBody = document.querySelector(".chat-body");
     chatBody.innerHTML = `
         <div class="bot-msg">
-            Hi 👋 How can I help you?
+            Hi  How can I help you?
             <div class="time">${getTime()}</div>
         </div>
     `;
