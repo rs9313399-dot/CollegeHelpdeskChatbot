@@ -1,61 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>College Helpdesk Chatbot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Fonts -->
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <title>College Helpdesk Chatbot</title>
+    
+    <!-- Flask static css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
-  <div class="chat-container">
+<div class="bg-blobs"></div>
+
+<div class="chat-glass">
     <div class="chat-header">
-      🤖 College Helpdesk AI
+        <span>🎓 College Helpdesk</span>
+        <button class="clear-btn" onclick="clearChat()">Clear</button>
+        <p>Ask anything about admission, fees, exams</p>
     </div>
 
-    <div class="chat-body" id="chatBody">
-      <div class="message bot">
-        Hello 👋 How can I help you today?
-      </div>
+    <div class="chat-body">
+        <div class="bot-msg">Hi 👋 How can I help you?</div>
+    </div>
+    <div class="quick-buttons">
+    <button onclick="quickSend('admission')">Admission</button>
+    <button onclick="quickSend('fees')">Fees</button>
+    <button onclick="quickSend('courses')">Courses</button>
+    <button onclick="quickSend('hostel')">Hostel</button>
     </div>
 
-    <div class="chat-footer">
-      <input type="text" id="userInput" placeholder="Ask something..." />
-      <button onclick="sendMessage()">➤</button>
+    <!-- 👇 YAHI MAIN CHANGE -->
+    <div class="chat-input">
+        <input type="text" id="userInput" placeholder="Type your question..." />
+        <button onclick="sendMessage()">Send</button>
     </div>
-  </div>
+</div>
+<div class="footer-credit">
+    Made with by <span>Ratnesh Singh</span>
+</div>
 
-  <script>
-    function sendMessage() {
-      const input = document.getElementById("userInput");
-      const msg = input.value.trim();
-      if (!msg) return;
-
-      const chatBody = document.getElementById("chatBody");
-
-      const userMsg = document.createElement("div");
-      userMsg.className = "message user";
-      userMsg.innerText = msg;
-      chatBody.appendChild(userMsg);
-
-      input.value = "";
-
-      setTimeout(() => {
-        const botMsg = document.createElement("div");
-        botMsg.className = "message bot";
-        botMsg.innerText = "Backend se smart reply aayega 🤍";
-        chatBody.appendChild(botMsg);
-        chatBody.scrollTop = chatBody.scrollHeight;
-      }, 500);
-
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }
-  </script>
+<!-- Flask static js -->
+<script src="{{ url_for('static', filename='chat.js') }}"></script>
 
 </body>
 </html>
