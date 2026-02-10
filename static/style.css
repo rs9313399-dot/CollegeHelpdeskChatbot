@@ -7,9 +7,14 @@ body {
     height: 100vh;
     display: grid;
     place-items: center;
-    font-family: 'Inter', system-ui, sans-serif;
-    background: #050814;
-    overflow: hidden;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #3f99ff,
+        #000000,
+        #22c530
+    );
 }
 
 /* BACKGROUND LIQUID */
@@ -22,12 +27,12 @@ body {
     filter: blur(120px);
     opacity: 0.55;
     border-radius: 50%;
-    animation: float 18s infinite alternate ease-in-out;
+    animation: float 3s infinite alternate ease-in-out;
 }
 
 .bg-blobs::before {
     background: #6366f1;
-    top: -120px;
+    top: -1px;
     left: -120px;
 }
 
@@ -62,7 +67,7 @@ body {
     border: 1px solid rgba(255,255,255,0.35);
 
     box-shadow:
-        0 40px 90px rgba(0,0,0,0.75),
+        0 30px 90px rgba(0,0,0,0.75),
         inset 0 1px 1px rgba(255,255,255,0.45);
 }
 
@@ -74,7 +79,7 @@ body {
 }
 
 .chat-header p {
-    margin: 4px 0 14px;
+    margin: 10px 0 18px;
     font-size: 13px;
     color: rgba(255,255,255,0.7);
 }
@@ -82,7 +87,7 @@ body {
 /* BODY */
 .chat-body {
     flex: 1;
-    padding: 10px;
+    padding: 0px;
     overflow-y: auto;
 }
 
@@ -98,13 +103,13 @@ body {
 
 .bot-msg {
     background: rgba(255,255,255,0.18);
-    color: #fff;
+    color: #ffffff;
     align-self: flex-start;
 }
 
 .user-msg {
     background: rgba(99,102,241,0.45);
-    color: #fff;
+    color: #ffffff;
     align-self: flex-end;
 }
 
@@ -117,7 +122,7 @@ body {
 
 .chat-input input {
     flex: 1;
-    padding: 12px 14px;
+    padding: 12px 24px;
     border-radius: 14px;
 
     background: rgba(255,255,255,0.18);
