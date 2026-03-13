@@ -9,12 +9,12 @@ body {
     place-items: center;
     font-family: 'Inter', 'Segoe UI', sans-serif;
 
-    background: linear-gradient(
-        135deg,
-        #3f99ff,
-        #000000,
-        #22c530
-    );
+    background:
+        radial-gradient(circle at 0% 0%, #1d4ed8 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #22c55e 0, transparent 55%),
+        radial-gradient(circle at 0% 100%, #0ea5e9 0, transparent 55%),
+        #020617;
+    color: #e5e7eb;
 }
 
 /* BACKGROUND LIQUID */
@@ -49,8 +49,8 @@ body {
 
 /* CHAT CARD */
 .chat-glass {
-    width: 420px;
-    height: 540px;
+    width: min(460px, 92vw);
+    height: min(610px, 86vh);
     display: flex;
     flex-direction: column;
 
@@ -84,12 +84,70 @@ body {
     color: rgba(255,255,255,0.7);
 }
 
+/* Header layout */
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 30%, #a5b4fc, #22c55e);
+    box-shadow: 0 0 0 6px rgba(255,255,255,0.10);
+}
+
+.header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 12px;
+    font-size: 11px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.link-btn:hover {
+    transform: translateY(-1px);
+    background: rgba(99, 241, 123, 0.25);
+}
+
 /* BODY */
 .chat-body {
     flex: 1;
     padding: 0px;
     overflow-y: auto;
 }
+
+/* nicer scrollbars */
+.chat-body::-webkit-scrollbar { width: 10px; }
+.chat-body::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.18);
+    border: 2px solid rgba(0,0,0,0);
+    background-clip: padding-box;
+    border-radius: 999px;
+}
+.chat-body::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.26); }
 
 /* MESSAGES */
 .bot-msg,
@@ -99,18 +157,28 @@ body {
     margin-bottom: 12px;
     border-radius: 14px;
     font-size: 14px;
+    line-height: 1.35;
+    word-break: break-word;
+    animation: popIn 140ms ease-out;
 }
 
 .bot-msg {
     background: rgba(255,255,255,0.18);
     color: #ffffff;
     align-self: flex-start;
+    border: 1px solid rgba(255,255,255,0.18);
 }
 
 .user-msg {
     background: rgba(99,102,241,0.45);
     color: #ffffff;
     align-self: flex-end;
+    border: 1px solid rgba(255,255,255,0.14);
+}
+
+@keyframes popIn {
+    from { transform: translateY(4px); opacity: 0.0; }
+    to { transform: translateY(0); opacity: 1.0; }
 }
 
 /* INPUT */
@@ -129,10 +197,16 @@ body {
     border: 1px solid rgba(255,255,255,0.3);
     color: #fff;
     outline: none;
+    transition: 0.25s;
 }
 
 .chat-input input::placeholder {
     color: rgba(255,255,255,0.6);
+}
+
+.chat-input input:focus {
+    border-color: rgba(165, 180, 252, 0.55);
+    box-shadow: 0 0 0 4px rgba(165,180,252,0.12);
 }
 
 /* BUTTON */
@@ -205,7 +279,6 @@ body {
     background: rgba(99, 241, 123, 0.45);
 }
 .clear-btn {
-    margin-left: auto;
     padding: 4px 12px;
     font-size: 11px;
     border-radius: 999px;
@@ -252,4 +325,39 @@ body {
 }
 .bot-msg .time {
     text-align: left;
+}
+
+/* Suggestion chips (from backend suggestions) */
+.suggestions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.chip {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.30);
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.chip:hover {
+    background: rgba(99,102,241,0.35);
+    transform: translateY(-1px);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .bg-blobs::before,
+    .bg-blobs::after,
+    .typing,
+    .bot-msg,
+    .user-msg {
+        animation: none !important;
+    }
 }

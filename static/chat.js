@@ -1,3 +1,36 @@
+const STORAGE_KEY = "collegeHelpdeskChat_v1";
+
+function saveChat() {
+    const chatBody = document.querySelector(".chat-body");
+    localStorage.setItem(STORAGE_KEY, chatBody.innerHTML);
+}
+
+function loadChat() {
+    const chatBody = document.querySelector(".chat-body");
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved && saved.trim()) {
+        chatBody.innerHTML = saved;
+        chatBody.scrollTop = chatBody.scrollHeight;
+    }
+}
+
+function escapeHtml(s) {
+    return String(s)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+function renderSuggestions(suggestions) {
+    if (!Array.isArray(suggestions) || suggestions.length === 0) return "";
+    const buttons = suggestions
+        .map(t => `<button class="chip" onclick="quickSend('${escapeHtml(t)}')">${escapeHtml(t)}</button>`)
+        .join("");
+    return `<div class="suggestions">${buttons}</div>`;
+}
+
 function sendMessage() {
     const input = document.getElementById("userInput");
     const message = input.value.trim();
@@ -9,13 +42,14 @@ function sendMessage() {
     const userDiv = document.createElement("div");
     userDiv.className = "user-msg";
     userDiv.innerHTML = `
-        ${message}
+        ${escapeHtml(message)}
         <div class="time">${getTime()}</div>
     `;
     chatBody.appendChild(userDiv);
 
     input.value = ""; // ✅ input clear
     chatBody.scrollTop = chatBody.scrollHeight;
+    saveChat();
 
     // BOT TYPING...
     const typingDiv = document.createElement("div");
@@ -23,6 +57,7 @@ function sendMessage() {
     typingDiv.innerText = "Bot is typing...";
     chatBody.appendChild(typingDiv);
     chatBody.scrollTop = chatBody.scrollHeight;
+    saveChat();
 
     fetch("/chat", {
         method: "POST",
@@ -39,19 +74,22 @@ function sendMessage() {
             const botDiv = document.createElement("div");
             botDiv.className = "bot-msg";
             botDiv.innerHTML = `
-                ${data.reply}
+                ${escapeHtml(data.reply)}
                 <div class="time">${getTime()}</div>
+                ${renderSuggestions(data.suggestions)}
             `;
             chatBody.appendChild(botDiv);
             chatBody.scrollTop = chatBody.scrollHeight;
+            saveChat();
         }, 1000); // ⏳ AI feel delay
     })
     .catch(err => {
         typingDiv.remove();
         const errorDiv = document.createElement("div");
         errorDiv.className = "bot-msg";
-        errorDiv.innerText = "Error aa gaya bc 😵‍💫";
+        errorDiv.innerText = "Error aa gaya 😵‍💫";
         chatBody.appendChild(errorDiv);
+        saveChat();
     });
 }
 
@@ -65,6 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
             sendMessage();
         }
     });
+
+    loadChat();
 });
 
 // Quick buttons
@@ -83,6 +123,7 @@ function clearChat() {
             <div class="time">${getTime()}</div>
         </div>
     `;
+    saveChat();
 }
 
 // Time function

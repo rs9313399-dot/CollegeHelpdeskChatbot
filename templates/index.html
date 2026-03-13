@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Helpdesk Chatbot</title>
     
     <!-- Flask static css -->
@@ -13,9 +14,18 @@
 
 <div class="chat-glass">
     <div class="chat-header">
-        <span>🎓 College Helpdesk</span>
-        <button class="clear-btn" onclick="clearChat()">Clear</button>
-        <p>Ask anything about admission, fees, exams</p>
+        <div class="header-row">
+            <div class="brand">
+                <div class="brand-dot" aria-hidden="true"></div>
+                <span>College Helpdesk</span>
+            </div>
+
+            <div class="header-actions">
+                <a class="link-btn" href="/admin" title="Edit FAQ">Admin</a>
+                <button class="clear-btn" onclick="clearChat()" title="Clear chat">Clear</button>
+            </div>
+        </div>
+        <p>Ask about admission, fees, courses, hostel, placement and more.</p>
     </div>
 
     <div class="chat-body">

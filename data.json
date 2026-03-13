@@ -1,7 +1,7 @@
 {
   "admission": "Admission process starts in July. Visit college website.",
   "fees": "Fees depend on course. B.Tech approx 45000 per year.",
-  "courses": "We offer B.Tech, M.Tech, Diploma courses.",
+  "courses": "We offer B.Tech, M.Tech, Diploma courses.buck",
   "hostel": "Hostel facility is available for boys and girls.",
   "contact": "Contact college office at 0771-XXXXXX",
   "library": "Library is open from 9 AM to 5 PM on weekdays.",
@@ -9,11 +9,20 @@
   "faculty": "Our faculty members are highly qualified and experienced.",
   "events": "We organize annual tech fest and cultural events.",
   "placement": "Our placement cell has tie-ups with top companies for recruitment.",
-  "other": "Please specify your query for more information." ,
-    "massages": {
-      "greeting": ["Hello! How can I assist you today?", "Hi there! What can I do for you?"],
-      "farewell": ["Goodbye! Have a great day!", "See you later! Take care!"],
-      "thanks": ["You're welcome!", "No problem! Happy to help!"]
-     },
+  "other": "Please specify your query for more information.",
+  "massages": {
+    "greeting": [
+      "Hello! How can I assist you today?",
+      "Hi there! What can I do for you?"
+    ],
+    "farewell": [
+      "Goodbye! Have a great day!",
+      "See you later! Take care!"
+    ],
+    "thanks": [
+      "You're welcome!",
+      "No problem! Happy to help!"
+    ]
+  },
   "magazine": "Our college magazine is published annually, featuring student articles and achievements."
 }
